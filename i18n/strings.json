@@ -1,0 +1,438 @@
+{
+  "_comment": "AudioMemo 共用字串來源。en、zh-Hant 為已定稿；其他語言在 locales/<語言>.json（AI 初譯，待審）。產生 Mac 的 String Catalog：python3 scripts/gen_strings.py",
+  "strings": {
+    "status.ready": {
+      "en": "Ready",
+      "zh-Hant": "準備好了",
+      "note": "狀態字（錄音面板左上、選單列）"
+    },
+    "status.recording": {
+      "en": "Recording",
+      "zh-Hant": "錄音中"
+    },
+    "status.paused": {
+      "en": "Paused",
+      "zh-Hant": "已暫停"
+    },
+    "status.playing": {
+      "en": "Playing",
+      "zh-Hant": "播放中"
+    },
+    "status.saving": {
+      "en": "Saving…",
+      "zh-Hant": "儲存中…"
+    },
+    "status.error": {
+      "en": "Needs attention",
+      "zh-Hant": "需要處理"
+    },
+    "status.starting": {
+      "en": "Starting…",
+      "zh-Hant": "準備中…"
+    },
+    "action.startRecording": {
+      "en": "Start Recording",
+      "zh-Hant": "開始錄音",
+      "note": "按鈕"
+    },
+    "action.stopRecording": {
+      "en": "Stop Recording",
+      "zh-Hant": "停止錄音"
+    },
+    "action.stop": {
+      "en": "Stop",
+      "zh-Hant": "停止"
+    },
+    "action.pause": {
+      "en": "Pause",
+      "zh-Hant": "暫停"
+    },
+    "action.resume": {
+      "en": "Resume",
+      "zh-Hant": "繼續"
+    },
+    "action.openWindow": {
+      "en": "Open AudioMemo",
+      "zh-Hant": "打開 AudioMemo"
+    },
+    "action.openFolder": {
+      "en": "Open Recordings Folder",
+      "zh-Hant": "打開錄音資料夾"
+    },
+    "action.quit": {
+      "en": "Quit AudioMemo",
+      "zh-Hant": "結束 AudioMemo"
+    },
+    "action.play": {
+      "en": "Play",
+      "zh-Hant": "播放"
+    },
+    "action.pausePlayback": {
+      "en": "Pause",
+      "zh-Hant": "暫停播放"
+    },
+    "action.share": {
+      "en": "Share…",
+      "zh-Hant": "分享…"
+    },
+    "action.transcribe": {
+      "en": "Transcribe",
+      "zh-Hant": "轉成逐字稿"
+    },
+    "action.revealInFinder": {
+      "en": "Show in Finder",
+      "zh-Hant": "在 Finder 中顯示"
+    },
+    "action.rename": {
+      "en": "Rename…",
+      "zh-Hant": "重新命名…"
+    },
+    "action.delete": {
+      "en": "Delete…",
+      "zh-Hant": "刪除…"
+    },
+    "action.convert": {
+      "en": "Convert to Another Format",
+      "zh-Hant": "轉成其他格式"
+    },
+    "convert.progress": {
+      "en": "Converting to %@…",
+      "zh-Hant": "正在轉成 %@…"
+    },
+    "convert.cancelled": {
+      "en": "Conversion cancelled. No file was created.",
+      "zh-Hant": "已取消轉檔，沒有產生檔案。"
+    },
+    "convert.failed": {
+      "en": "Couldn't convert: %@",
+      "zh-Hant": "轉檔失敗：%@"
+    },
+    "convert.noLame": {
+      "en": "The MP3 encoder (LAME) is missing from the app.",
+      "zh-Hant": "App 裡缺少 MP3 編碼器（LAME）。"
+    },
+    "action.moveToTrash": {
+      "en": "Move to Trash",
+      "zh-Hant": "移到垃圾桶"
+    },
+    "action.more": {
+      "en": "More",
+      "zh-Hant": "更多"
+    },
+    "action.cancel": {
+      "en": "Cancel",
+      "zh-Hant": "取消"
+    },
+    "action.save": {
+      "en": "Save",
+      "zh-Hant": "儲存"
+    },
+    "action.ok": {
+      "en": "OK",
+      "zh-Hant": "好"
+    },
+    "level.mic": {
+      "en": "Microphone",
+      "zh-Hant": "麥克風",
+      "note": "錄音面板"
+    },
+    "level.system": {
+      "en": "Mac Sound",
+      "zh-Hant": "電腦聲音"
+    },
+    "level.muted": {
+      "en": "muted",
+      "zh-Hant": "靜音"
+    },
+    "action.muteTrack": {
+      "en": "Mute this track",
+      "zh-Hant": "這一軌靜音"
+    },
+    "action.unmuteTrack": {
+      "en": "Unmute this track",
+      "zh-Hant": "恢復這一軌"
+    },
+    "hint.whatIsRecorded": {
+      "en": "Records everything this Mac plays — Zoom, Teams, Meet, videos — plus your microphone.",
+      "zh-Hant": "錄下這台 Mac 播出的所有聲音（Zoom、Teams、Meet、影片…）和你的麥克風。"
+    },
+    "a11y.playbackPosition": {
+      "en": "Playback position",
+      "zh-Hant": "播放位置"
+    },
+    "error.playWhileRecording": {
+      "en": "You can't play a recording while recording. Stop recording first.",
+      "zh-Hant": "錄音中不能播放，請先停止錄音。"
+    },
+    "a11y.elapsed": {
+      "en": "Recording time",
+      "zh-Hant": "錄音時間"
+    },
+    "transcribe.explain": {
+      "en": "Transcribe with Osmi",
+      "zh-Hant": "讓Osmi聽寫逐字稿",
+      "note": "使用者定稿（2026-10-20）：zh-TW 一字不改、Osmi 前後不加空格；其他語言照語意精簡翻（只有這裡提到 Osmi）"
+    },
+    "list.title": {
+      "en": "Recordings",
+      "zh-Hant": "錄音檔",
+      "note": "檔案列表"
+    },
+    "list.empty": {
+      "en": "No recordings yet",
+      "zh-Hant": "還沒有錄音"
+    },
+    "rename.title": {
+      "en": "Rename Recording",
+      "zh-Hant": "重新命名"
+    },
+    "rename.placeholder": {
+      "en": "Name",
+      "zh-Hant": "名稱"
+    },
+    "delete.title": {
+      "en": "Delete “%@”?",
+      "zh-Hant": "要刪除「%@」嗎？"
+    },
+    "delete.message": {
+      "en": "The file will be moved to the Trash.",
+      "zh-Hant": "檔案會移到垃圾桶。"
+    },
+    "error.title": {
+      "en": "Something went wrong",
+      "zh-Hant": "出了點問題",
+      "note": "錯誤"
+    },
+    "error.micDenied": {
+      "en": "AudioMemo can't use the microphone. Turn it on in System Settings › Privacy & Security › Microphone.",
+      "zh-Hant": "AudioMemo 無法使用麥克風。請到「系統設定 › 隱私權與安全性 › 麥克風」打開。"
+    },
+    "error.startFailed": {
+      "en": "Couldn't start recording: %@",
+      "zh-Hant": "無法開始錄音：%@"
+    },
+    "error.noMic": {
+      "en": "No microphone found. Connect one, or pick one in Settings.",
+      "zh-Hant": "找不到麥克風。請接上麥克風，或到「設定」選一支。"
+    },
+    "error.noAudio": {
+      "en": "Recording didn't start — no sound came in. Please try again.",
+      "zh-Hant": "錄音沒有開始（沒有收到聲音）。請再試一次。"
+    },
+    "notice.tooShort": {
+      "en": "Recording was too short and wasn't saved.",
+      "zh-Hant": "錄音太短，沒有存檔。"
+    },
+    "error.emptyName": {
+      "en": "Please enter a name.",
+      "zh-Hant": "請輸入名稱。"
+    },
+    "error.nameExists": {
+      "en": "A recording with this name already exists.",
+      "zh-Hant": "已經有同名的錄音檔。"
+    },
+    "settings.title": {
+      "en": "Settings",
+      "zh-Hant": "設定",
+      "note": "設定"
+    },
+    "settings.microphone": {
+      "en": "Microphone",
+      "zh-Hant": "麥克風"
+    },
+    "settings.noMic": {
+      "en": "No microphone",
+      "zh-Hant": "沒有麥克風"
+    },
+    "settings.airpodsNote": {
+      "en": "“Same as System” uses the Mac’s current input, and switches to the mic a call app (like Zoom) is using. Bluetooth mics switch audio to call quality.",
+      "zh-Hant": "「跟隨系統」會用 Mac 目前的輸入裝置，並自動跟上視訊 App（例如 Zoom）正在用的麥克風。藍牙麥克風會讓聲音變成通話音質。"
+    },
+    "settings.autoLevel": {
+      "en": "Balance volume automatically",
+      "zh-Hant": "自動平衡音量"
+    },
+    "settings.autoLevelNote": {
+      "en": "Quiet voices and quiet calls are brought up to a similar level; background noise isn't amplified. Applies to the next recording.",
+      "zh-Hant": "說話或對方聲音太小時自動拉大到相近的音量，只有背景雜音時不放大。下一次錄音起生效。"
+    },
+    "settings.folderOpen": {
+      "en": "Open in Finder",
+      "zh-Hant": "在 Finder 打開"
+    },
+    "settings.folderChoose": {
+      "en": "Choose a folder for recordings",
+      "zh-Hant": "選擇錄音存放的資料夾"
+    },
+    "settings.folderChooseButton": {
+      "en": "Use This Folder",
+      "zh-Hant": "使用這個資料夾"
+    },
+    "settings.folderChooseMessage": {
+      "en": "New recordings will be saved here. Existing recordings stay where they are.",
+      "zh-Hant": "之後的錄音會存到這裡。原本的錄音檔留在原處，不會搬動。"
+    },
+    "settings.folderReset": {
+      "en": "Restore Default",
+      "zh-Hant": "恢復預設"
+    },
+    "settings.folderNote": {
+      "en": "Changing the folder doesn't move or delete existing recordings.",
+      "zh-Hant": "換資料夾不會搬動或刪除原本的錄音檔。"
+    },
+    "settings.folderUnavailable": {
+      "en": "The folder you chose is missing or can't be written to, so recordings are saved to ~/Music/AudioMemo for now.",
+      "zh-Hant": "你選的資料夾不見了或沒有寫入權限，目前先存到 ~/Music/AudioMemo。"
+    },
+    "settings.folderNoAccess": {
+      "en": "AudioMemo can't save to that folder. Please choose another one.",
+      "zh-Hant": "AudioMemo 無法存到那個資料夾，請換一個。"
+    },
+    "settings.followSystem": {
+      "en": "Same as System",
+      "zh-Hant": "跟隨系統"
+    },
+    "settings.bluetoothTag": {
+      "en": "%@ (Bluetooth)",
+      "zh-Hant": "%@（藍牙）"
+    },
+    "settings.folderChooseShort": {
+      "en": "…",
+      "zh-Hant": "…"
+    },
+    "level.mutedFormat": {
+      "en": "%@ (muted)",
+      "zh-Hant": "%@（靜音）"
+    },
+    "a11y.trackButton": {
+      "en": "%1$@ – %2$@",
+      "zh-Hant": "%1$@：%2$@"
+    },
+    "player.position": {
+      "en": "%1$@ / %2$@",
+      "zh-Hant": "%1$@ / %2$@"
+    },
+    "format.mp3": {
+      "en": "MP3 (320 kbps)",
+      "zh-Hant": "MP3（320 kbps）"
+    },
+    "format.wav": {
+      "en": "WAV (16-bit, 48 kHz)",
+      "zh-Hant": "WAV（16 位元、48 kHz）"
+    },
+    "format.flac": {
+      "en": "FLAC (lossless)",
+      "zh-Hant": "FLAC（無損）"
+    },
+    "format.aiff": {
+      "en": "AIFF (16-bit)",
+      "zh-Hant": "AIFF（16 位元）"
+    },
+    "format.m4a": {
+      "en": "M4A (AAC 256 kbps, copy)",
+      "zh-Hant": "M4A（AAC 256 kbps，另存一份）"
+    },
+    "mic.followingSystem": {
+      "en": "%@ (following System)",
+      "zh-Hant": "%@（跟隨系統）"
+    },
+    "notice.followedApp": {
+      "en": "Now using the mic %1$@ is using: %2$@",
+      "zh-Hant": "已跟上 %1$@ 使用的麥克風：%2$@"
+    },
+    "notice.followedInUse": {
+      "en": "Now using the mic that's in use: %@",
+      "zh-Hant": "已跟上正在使用中的麥克風：%@"
+    },
+    "notice.switchedDevice": {
+      "en": "Switched to %@",
+      "zh-Hant": "已切換到 %@"
+    },
+    "notice.deviceLost": {
+      "en": "%@ is unavailable — using the system microphone",
+      "zh-Hant": "找不到 %@，改用系統麥克風"
+    },
+    "notice.bluetooth": {
+      "en": "Bluetooth mics switch recording and headphones to call quality. Use the Mac or iPhone mic instead.",
+      "zh-Hant": "藍牙麥克風會讓錄音與耳機變成通話音質，建議改用 Mac 或 iPhone 的麥克風"
+    },
+    "notice.exportDone": {
+      "en": "Saved %@",
+      "zh-Hant": "已存成 %@"
+    },
+    "action.dismiss": {
+      "en": "Dismiss",
+      "zh-Hant": "略過"
+    },
+    "error.switchFailed": {
+      "en": "Couldn't switch to %@",
+      "zh-Hant": "無法切換到 %@"
+    },
+    "settings.echo": {
+      "en": "Echo cancellation",
+      "zh-Hant": "回音消除"
+    },
+    "settings.echoAuto": {
+      "en": "Automatic",
+      "zh-Hant": "自動"
+    },
+    "settings.echoOn": {
+      "en": "Always On",
+      "zh-Hant": "永遠開"
+    },
+    "settings.echoOff": {
+      "en": "Always Off",
+      "zh-Hant": "永遠關"
+    },
+    "settings.echoNote": {
+      "en": "Automatic turns it on when sound plays through speakers (so your mic doesn't pick it up again) and off with headphones. While it's on, Control Center › Mic Mode (Voice Isolation, Wide Spectrum) applies to AudioMemo. For a Bluetooth speaker, choose Always On.",
+      "zh-Hant": "「自動」：用喇叭外放時開啟（麥克風才不會再錄到喇叭的聲音），戴耳機時關閉。開啟時可在控制中心的「麥克風模式」選語音隔離或寬頻。用藍牙喇叭請選「永遠開」。"
+    },
+    "notice.echoOn": {
+      "en": "Echo cancellation on (speakers)",
+      "zh-Hant": "已開啟回音消除（喇叭外放）"
+    },
+    "notice.echoOff": {
+      "en": "Echo cancellation off (headphones)",
+      "zh-Hant": "已關閉回音消除（耳機）"
+    },
+    "label.share": {
+      "en": "Share",
+      "zh-Hant": "分享"
+    },
+    "label.more": {
+      "en": "More",
+      "zh-Hant": "更多"
+    },
+    "help.renameInline": {
+      "en": "Click to rename",
+      "zh-Hant": "點一下就能改名"
+    },
+    "rename.emptyReverted": {
+      "en": "The name can't be empty — kept the original name",
+      "zh-Hant": "名稱不能空白，已恢復原名"
+    },
+    "rename.illegalReverted": {
+      "en": "Names can't contain / or : or start with a dot — kept the original name",
+      "zh-Hant": "名稱不能包含 / 或 :，也不能以點開頭，已恢復原名"
+    },
+    "rename.numbered": {
+      "en": "That name is taken — renamed to %@",
+      "zh-Hant": "已有同名檔案，改成 %@"
+    },
+    "settings.folder": {
+      "en": "Recordings folder",
+      "zh-Hant": "錄音資料夾"
+    }
+  },
+  "infoPlist": {
+    "NSMicrophoneUsageDescription": {
+      "en": "AudioMemo records your voice from the microphone.",
+      "zh-Hant": "AudioMemo 會錄下你麥克風的聲音。"
+    },
+    "NSAudioCaptureUsageDescription": {
+      "en": "AudioMemo records the sound playing on this Mac (meetings, videos).",
+      "zh-Hant": "AudioMemo 會錄下這台 Mac 播出的聲音（會議、影片）。"
+    }
+  }
+}

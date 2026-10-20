@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Hardened Runtime：麥克風。系統聲音（process tap）不需要 entitlement，靠 Info.plist 的 NSAudioCaptureUsageDescription＋使用者允許。
+	     LAME dylib 以同一張 Developer ID 簽章，library validation 不必關。 -->
+	<key>com.apple.security.device.audio-input</key>
+	<true/>
+</dict>
+</plist>

@@ -1,0 +1,22 @@
+# build output
+build/
+core/build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+.DS_Store
+
+# local-only settings and secrets — never commit
+mac/scripts/local.env
+*.p8
+*.p12
+*.cer
+*.certSigningRequest
+*.mobileprovision
+.env
+.env.*
+
+# recordings / test captures (keep only synthetic sounds in test-audio/)
+*.m4a
+*.caf
+!test-audio/**

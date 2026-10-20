@@ -1,0 +1,172 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "NSAudioCaptureUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "يسجّل AudioMemo الصوت الذي يُشغَّل على هذا الـ Mac (الاجتماعات والفيديوهات)."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "AudioMemo nimmt den Ton auf, der auf diesem Mac abgespielt wird (Meetings, Videos)."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AudioMemo records the sound playing on this Mac (meetings, videos)."
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "AudioMemo records the sound playing on this Mac (meetings, videos)."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "AudioMemo graba el sonido que se reproduce en este Mac (reuniones, videos)."
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "AudioMemo graba el sonido que se reproduce en este Mac (reuniones, videos)."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "AudioMemo enregistre le son joué sur ce Mac (réunions, vidéos)."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Az AudioMemo rögzíti a Macen lejátszott hangot (értekezletek, videók)."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "AudioMemo はこの Mac で再生される音（会議、動画）を録音します。"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "AudioMemo บันทึกเสียงที่เล่นบน Mac เครื่องนี้ (การประชุม วิดีโอ)"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "AudioMemo 會錄下這台 Mac 播出的聲音（會議、影片）。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "AudioMemo 会录下这台 Mac 播放的声音（会议、视频）。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AudioMemo 會錄下這台 Mac 播出的聲音（會議、影片）。"
+          }
+        }
+      }
+    },
+    "NSMicrophoneUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "يسجّل AudioMemo صوتك من الميكروفون."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "AudioMemo nimmt deine Stimme über das Mikrofon auf."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AudioMemo records your voice from the microphone."
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "AudioMemo records your voice from the microphone."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "AudioMemo graba tu voz con el micrófono."
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "AudioMemo graba tu voz con el micrófono."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "AudioMemo enregistre votre voix avec le micro."
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Az AudioMemo a mikrofonon keresztül rögzíti a hangodat."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "AudioMemo はマイクからあなたの声を録音します。"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "AudioMemo บันทึกเสียงของคุณจากไมโครโฟน"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "AudioMemo 會錄下你麥克風的聲音。"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "AudioMemo 会录下你麦克风的声音。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AudioMemo 會錄下你麥克風的聲音。"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
