@@ -24,15 +24,9 @@ xcodebuild -project AudioMemo.xcodeproj -scheme AudioMemo -configuration Release
 APP="$OUT/AudioMemo.app"
 ditto ../build/mac-release/Build/Products/Release/AudioMemo.app "$APP"
 
-# 2) 內附 LAME＋mpg123（LGPL，dlopen 動態載入）並用同一張 Developer ID 簽（library validation 不必關）
-FW="$APP/Contents/Frameworks"; mkdir -p "$FW"
-cp -f "${LAME_DIR:-/opt/homebrew/opt/lame/lib}/libmp3lame.0.dylib" "${MPG123_DIR:-/opt/homebrew/opt/mpg123/lib}/libmpg123.0.dylib" "$FW/"
-chmod u+w "$FW"/*.dylib
-install_name_tool -id @rpath/libmp3lame.0.dylib "$FW/libmp3lame.0.dylib" 2>/dev/null
-MPG_OLD=$(otool -L "$FW/libmp3lame.0.dylib" | awk '/libmpg123/{print $1}')
-[ -n "$MPG_OLD" ] && install_name_tool -change "$MPG_OLD" @loader_path/libmpg123.0.dylib "$FW/libmp3lame.0.dylib" 2>/dev/null
-install_name_tool -id @rpath/libmpg123.0.dylib "$FW/libmpg123.0.dylib" 2>/dev/null
-codesign --force --timestamp --options runtime --sign "$IDENTITY" "$FW"/*.dylib
+# 2) bundle LAME (LGPL, dlopen) signed with the same Developer ID (library validation stays on)
+scripts/bundle-lame.sh "$APP" "$IDENTITY"
+codesign --force --timestamp --options runtime --sign "$IDENTITY" "$APP/Contents/Frameworks/libmp3lame.0.dylib"
 codesign --force --timestamp --options runtime --entitlements Support/AudioMemo.entitlements --sign "$IDENTITY" "$APP"
 codesign --verify --deep --strict --verbose=2 "$APP"
 

@@ -38,12 +38,14 @@ Windows is planned (`windows/`), sharing the portable C core in `core/`.
 ```bash
 make -C core test                     # portable core unit tests
 python3 scripts/gen_strings.py        # i18n/ → mac String Catalogs (already committed)
+mac/scripts/build-lame.sh             # optional: LAME for MP3 export (LGPL, separate dylib)
 mac/scripts/build-install.sh          # Release build → ~/Applications/AudioMemo.app
 open ~/Applications/AudioMemo.app
 ```
 
 Signing: `AUDIOMEMO_SIGN_IDENTITY` (defaults to your "Apple Development" identity, or ad-hoc `-`).
-MP3 export needs LAME (`brew install lame`); it is bundled as a separate LGPL library — see `THIRD-PARTY-NOTICES.md`.
+MP3 export uses LAME, built from source by `mac/scripts/build-lame.sh` and bundled as a separate LGPL library — see `THIRD-PARTY-NOTICES.md`.
+Mac App Store build (App Sandbox): `mac/scripts/release-mas.sh`; Developer ID build: `mac/scripts/release.sh`.
 
 ## Permissions
 

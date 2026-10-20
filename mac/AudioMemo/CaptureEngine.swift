@@ -564,6 +564,10 @@ final class CaptureEngine: @unchecked Sendable {
 /// 除錯紀錄：~/Library/Logs/AudioMemo/debug.log（排查裝置／權限問題用）。
 enum DebugLog {
     static let url: URL = {
+        // 測試用：-debugLogFile <路徑>（沙盒版的容器目錄其他程式讀不到，測試時改寫到 ~/Music/…）
+        if let custom = UserDefaults.standard.string(forKey: "debugLogFile") {
+            return URL(fileURLWithPath: (custom as NSString).expandingTildeInPath)
+        }
         let dir = FileManager.default.homeDirectoryForCurrentUser
             .appendingPathComponent("Library/Logs/AudioMemo", isDirectory: true)
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)

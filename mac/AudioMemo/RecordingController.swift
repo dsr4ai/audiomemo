@@ -287,7 +287,8 @@ final class RecordingController: ObservableObject {
     func runAutotestIfRequested() {
         let seconds = UserDefaults.standard.double(forKey: "autotestSeconds")
         guard seconds > 0 else { return }
-        let resultURL = DebugLog.url.deletingLastPathComponent().appendingPathComponent("autotest.txt")
+        let resultURL = DebugLog.url.deletingLastPathComponent().appendingPathComponent(
+            UserDefaults.standard.string(forKey: "debugLogFile") == nil ? "autotest.txt" : "autotest-result.txt")
         try? FileManager.default.removeItem(at: resultURL)
         DebugLog.write("autotest: mic auth=\(AVCaptureDevice.authorizationStatus(for: .audio).rawValue) (3=authorized 2=denied 0=notDetermined)")
         let micSound = UserDefaults.standard.string(forKey: "autotestMicSound")

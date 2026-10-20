@@ -17,19 +17,48 @@ struct Recording: Identifiable, Hashable {
 final class FileStore: ObservableObject {
     @Published private(set) var recordings: [Recording] = []
 
-    /// 使用者自訂的錄音資料夾（設定 → 錄音資料夾 →「…」）。存路徑：本 App 沒有沙盒，不需要 security-scoped bookmark。
+    /// 使用者自訂的錄音資料夾（設定 → 錄音資料夾 →「…」）。
+    /// 存 security-scoped bookmark（Mac App Store 沙盒版必須；非沙盒版也能用），路徑只當備援與顯示。
     nonisolated static let customFolderKey = "customFolderPath"
+    nonisolated static let customFolderBookmarkKey = "customFolderBookmark"
 
+    /// 使用者真正的家目錄（沙盒裡 homeDirectoryForCurrentUser 會是容器路徑）
+    nonisolated static var realHome: URL {
+        if let pw = getpwuid(getuid()), let dir = pw.pointee.pw_dir {
+            return URL(fileURLWithPath: String(cString: dir), isDirectory: true)
+        }
+        return FileManager.default.homeDirectoryForCurrentUser
+    }
+
+    /// 預設 ~/Music/AudioMemo（沙盒版靠 com.apple.security.assets.music.read-write 存取）
     nonisolated static var defaultFolder: URL {
-        FileManager.default.homeDirectoryForCurrentUser
-            .appendingPathComponent("Music", isDirectory: true)
+        realHome.appendingPathComponent("Music", isDirectory: true)
             .appendingPathComponent("AudioMemo", isDirectory: true)
     }
 
-    /// 使用者選的資料夾（若有設定）。
+    nonisolated(unsafe) private static var resolvedBookmark: (data: Data, url: URL)?
+
+    /// 使用者選的資料夾（若有設定）。有 bookmark 就解析並開始存取（只做一次）。
     nonisolated static var customFolder: URL? {
+        if let data = UserDefaults.standard.data(forKey: customFolderBookmarkKey) {
+            if let r = resolvedBookmark, r.data == data { return r.url }
+            var stale = false
+            if let url = try? URL(resolvingBookmarkData: data, options: [.withSecurityScope], relativeTo: nil, bookmarkDataIsStale: &stale) {
+                _ = url.startAccessingSecurityScopedResource()
+                resolvedBookmark = (data, url)
+                if stale, let fresh = try? url.bookmarkData(options: [.withSecurityScope], includingResourceValuesForKeys: nil, relativeTo: nil) {
+                    UserDefaults.standard.set(fresh, forKey: customFolderBookmarkKey)
+                }
+                return url
+            }
+        }
         guard let p = UserDefaults.standard.string(forKey: customFolderKey), !p.isEmpty else { return nil }
         return URL(fileURLWithPath: p, isDirectory: true)
+    }
+
+    /// 顯示用路徑（家目錄縮成 ~）
+    nonisolated static func displayPath(_ url: URL) -> String {
+        url.path.replacingOccurrences(of: realHome.path, with: "~")
     }
 
     nonisolated static func isUsableFolder(_ url: URL) -> Bool {
@@ -60,8 +89,12 @@ final class FileStore: ObservableObject {
     func setCustomFolder(_ url: URL?) {
         if let url {
             UserDefaults.standard.set(url.path, forKey: Self.customFolderKey)
+            if let data = try? url.bookmarkData(options: [.withSecurityScope], includingResourceValuesForKeys: nil, relativeTo: nil) {
+                UserDefaults.standard.set(data, forKey: Self.customFolderBookmarkKey)
+            }
         } else {
             UserDefaults.standard.removeObject(forKey: Self.customFolderKey)
+            UserDefaults.standard.removeObject(forKey: Self.customFolderBookmarkKey)
         }
         DebugLog.write("folder -> \(Self.folder.path)")
         objectWillChange.send()
