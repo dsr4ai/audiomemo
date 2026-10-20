@@ -10,7 +10,7 @@
 
 | Asset | Path |
 |---|---|
-| AudioMemo app icon (two bubbles, light `#54CDCC` / deep `#299898`) | `mac/AudioMemo/Assets.xcassets/AppIcon.appiconset` |
+| AudioMemo app icon (two bubbles, light `#54CDCC` / deep `#299898`) | `mac/AudioMemo/AppIcon.icon` (Icon Composer; flat, no glass — Xcode generates the pre-macOS 26 images from it) |
 | AudioMemo mark, single color (menu bar) | `mac/AudioMemo/Assets.xcassets/AudioMemoMark.imageset` |
 | Osmi mark (transcribe button) | `mac/AudioMemo/Assets.xcassets/OsmiMark.imageset` |
 
