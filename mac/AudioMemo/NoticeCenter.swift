@@ -37,7 +37,7 @@ enum Notice: Equatable {
     var color: Color {
         switch self {
         case .bluetoothWarning, .deviceLost: Theme.warn
-        default: Theme.p500
+        default: Theme.primaryText
         }
     }
 

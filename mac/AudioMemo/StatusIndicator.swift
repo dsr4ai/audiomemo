@@ -50,7 +50,7 @@ enum RecorderStatus: CaseIterable {
     var color: Color {
         switch self {
         case .ready, .saving, .paused: Theme.ink2
-        case .starting, .playing: Theme.p500
+        case .starting, .playing: Theme.primaryText
         case .recording: Theme.rec      // ⛔ 唯一用錄音紅的狀態
         case .error: Theme.warn         // 警示色（琥珀），不用紅，免得跟錄音混淆
         }

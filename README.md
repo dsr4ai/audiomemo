@@ -62,7 +62,7 @@ Content protected by DRM may be recorded as silence.
 
 ## License
 
-Apache License 2.0 — see `LICENSE` and `NOTICE`. The Osmi name, mark and the temporary app icon are trademarks of BookAI and are **not** covered by the license (see `design/README.md`). Third-party components: `THIRD-PARTY-NOTICES.md`.
+Apache License 2.0 — see `LICENSE` and `NOTICE`. The AudioMemo and Osmi names, marks and app icon are trademarks of BookAI and are **not** covered by the license (see `design/README.md`). Third-party components: `THIRD-PARTY-NOTICES.md`.
 
 ---
 
@@ -75,4 +75,4 @@ AudioMemo 是免費、開源的小錄音工具：錄下系統混音（任何 App
 - 建置：見上方 Build。
 - 第一次錄音會跳出兩個視窗，都按「允許」：麥克風、錄製這台電腦的音訊。按錯可到「系統設定 › 隱私權與安全性 › 麥克風」與「螢幕與系統錄音 › 僅限系統錄音」打開。
 - 隱私：只在你按錄音時錄；檔案存在你的 Mac（預設 `~/音樂/AudioMemo`），App 不上傳任何東西、不收集使用資料。
-- 授權：Apache 2.0。Osmi 名稱、標誌與暫用 App 圖示是 BookAI 的商標，不在授權範圍內。
+- 授權：Apache 2.0。AudioMemo 與 Osmi 的名稱、標誌與 App 圖示是 BookAI 的商標，不在授權範圍內。

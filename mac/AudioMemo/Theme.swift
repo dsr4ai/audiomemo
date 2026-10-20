@@ -16,13 +16,23 @@ enum Theme {
     private static func white(_ a: CGFloat) -> NSColor { NSColor(white: 1, alpha: a) }
     private static func black(_ a: CGFloat) -> NSColor { NSColor(white: 0, alpha: a) }
 
-    // 主色階（品牌蔚藍 #81BDD6 = p300，只當強調色；互動色用 p500）
-    static let p100 = dynamic(hex(0xE8F5FA), hex(0x18242E))
-    static let p200 = dynamic(hex(0xCBE6F3), hex(0x22323F))
-    static let p300 = dynamic(hex(0x81BDD6), hex(0x81BDD6))
-    static let p500 = dynamic(hex(0x1479B8), hex(0x7FC4E6))
-    static let p700 = dynamic(hex(0x0B4D83), hex(0xA9D6E8))
-    static let onP500 = dynamic(hex(0xFFFFFF), hex(0x062033))
+    // 主色階：AudioMemo 聲波青（2026-10-20 定案）。p300＝品牌淺 #54CDCC、p500＝品牌深 #299898。
+    // 其餘階沿用原本（Osmi）主色階的推導方式：每一階保留原本的 OKLCH 明度，色相改成 195°，
+    // 彩度乘上同一個比例（#299898 的彩度 ÷ 原 p500 的彩度 ≈ 0.739）。推導與對比見 design/tokens.json。
+    // 只換主色；中性色、背景、錄音紅、警示色都不動。
+    static let p100 = dynamic(hex(0xEAF5F5), hex(0x182525))
+    static let p200 = dynamic(hex(0xCFE7E6), hex(0x223434))
+    static let p300 = dynamic(hex(0x54CDCC), hex(0x54CDCC))
+    static let p500 = dynamic(hex(0x299898), hex(0x54CDCC))
+    static let p600 = dynamic(hex(0x006E6E), hex(0x9ACCCB))
+    static let p700 = dynamic(hex(0x005858), hex(0xB1D6D6))
+    /// p500 底上的字：#299898 配白字只有 3.48:1（不到 AA 4.5），所以改用深青字（淺色 4.7:1、深色 8.5:1）
+    static let onP500 = dynamic(hex(0x062424), hex(0x062424))
+    /// 主色的「文字」用法（連結、外框按鈕字、狀態字、提示字）：淺色用 p600（白底 6.1:1），深色用 p500（深底 9.5:1）。
+    /// p500 本身只給填色、圖示、大字（≥3:1）。
+    static let primaryText = dynamic(hex(0x006E6E), hex(0x54CDCC))
+    /// Osmi 品牌淡藍（「讓Osmi聽寫逐字稿」按鈕的 Osmi 標誌用，不跟著 AudioMemo 主色改）
+    static let osmiBlue = dynamic(hex(0x81BDD6), hex(0x81BDD6))
 
     // 錄音紅：唯一例外色，只用在錄音狀態
     static let rec = dynamic(hex(0xE53935), hex(0xFF6B67))
@@ -53,12 +63,18 @@ enum Theme {
 
     /// 紅色錄音圖示（選單列用，非 template，才會保持紅色）。
     static func menuBarImage(recording: Bool) -> NSImage {
-        let name = recording ? "record.circle.fill" : "waveform.circle"
-        let base = NSImage(systemSymbolName: name, accessibilityDescription: "AudioMemo") ?? NSImage()
         guard recording else {
-            base.isTemplate = true
-            return base
+            // 待機：AudioMemo 單色標記（template，跟著選單列淺／深色走）
+            if let mark = NSImage(named: "AudioMemoMark")?.copy() as? NSImage {
+                mark.size = NSSize(width: 17, height: 15)    // 原稿 2000×1755
+                mark.isTemplate = true
+                return mark
+            }
+            let fallback = NSImage(systemSymbolName: "waveform.circle", accessibilityDescription: "AudioMemo") ?? NSImage()
+            fallback.isTemplate = true
+            return fallback
         }
+        let base = NSImage(systemSymbolName: "record.circle.fill", accessibilityDescription: "AudioMemo") ?? NSImage()
         let config = NSImage.SymbolConfiguration(paletteColors: [hex(0xE53935)])
         let img = base.withSymbolConfiguration(config) ?? base
         img.isTemplate = false
@@ -95,7 +111,7 @@ struct OutlineButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .font(.system(size: Theme.fsBody, weight: .medium))
-            .foregroundStyle(Theme.p500)
+            .foregroundStyle(Theme.primaryText)
             .padding(.horizontal, 18).padding(.vertical, 9)
             .background(Theme.p100.opacity(configuration.isPressed ? 1 : 0))
             .overlay(RoundedRectangle(cornerRadius: Theme.rBtn, style: .continuous).stroke(Theme.line))

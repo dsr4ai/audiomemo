@@ -25,7 +25,7 @@ struct FileListView: View {
                         .font(.system(size: Theme.fsCaption))
                 }
                 .buttonStyle(.plain)
-                .foregroundStyle(Theme.p500)
+                .foregroundStyle(Theme.primaryText)
             }
             .padding(.horizontal, 16).padding(.vertical, 12)
 
@@ -421,7 +421,7 @@ struct TranscribeButton: View {
                     .renderingMode(.template)
                     .resizable()
                     .scaledToFit()
-                    .foregroundStyle(Theme.p300)                       // 品牌淡藍
+                    .foregroundStyle(Theme.osmiBlue)                   // Osmi 品牌淡藍（不跟 AudioMemo 主色）
                     .frame(width: Self.markSize, height: Self.markSize)
                     .scaleEffect(expanded && !reduceMotion ? 1.15 : 1)
                     .frame(width: 34, height: 34)
