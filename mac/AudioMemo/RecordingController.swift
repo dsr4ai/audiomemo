@@ -254,9 +254,12 @@ final class RecordingController: ObservableObject {
                 return
             }
         }
-        elapsed = engine.elapsed
+        elapsed = engine.elapsed + DemoMode.elapsedOffset
         // 顯示的是實際寫進檔案的 RMS（自動平衡、靜音之後），dBFS 對數刻度 -60～0
         let l = engine.takeLevels()
+        if let d = DemoMode.levels(at: elapsed) {           // 示範截圖：只改畫面上的電平，不影響錄進檔案的聲音
+            micLevel = Self.smooth(micLevel, d.mic); sysLevel = Self.smooth(sysLevel, d.sys); return
+        }
         micLevel = Self.smooth(micLevel, Self.meter(l.mic))
         sysLevel = Self.smooth(sysLevel, Self.meter(l.sys))
     }

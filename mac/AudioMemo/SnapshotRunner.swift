@@ -13,7 +13,9 @@ enum SnapshotRunner {
         }
         let dir = URL(fileURLWithPath: (out as NSString).expandingTildeInPath, isDirectory: true)
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
-        if UserDefaults.standard.string(forKey: "snapshotSet") == "upload" {
+        if UserDefaults.standard.string(forKey: "snapshotSet") == "demo" {
+            Task { await runDemo(dir, prefix: UserDefaults.standard.string(forKey: "snapshotPrefix") ?? "x") }
+        } else if UserDefaults.standard.string(forKey: "snapshotSet") == "upload" {
             Task { await runUpload(dir, prefix: UserDefaults.standard.string(forKey: "snapshotPrefix") ?? "x") }
         } else if UserDefaults.standard.string(forKey: "snapshotSet") == "transcribe" {
             Task { await runTranscribe(dir, prefix: UserDefaults.standard.string(forKey: "snapshotPrefix") ?? "x") }
@@ -24,6 +26,60 @@ enum SnapshotRunner {
         } else {
             Task { await run(dir) }
         }
+    }
+
+    /// 商店示範畫面（淺色、視窗作用中）：待機、轉成逐字稿展開、播放長錄音到中段、轉檔選單、錄音中（兩軌電平）。
+    /// 搭配示範資料夾（scripts/make_demo_folder.py）與 -demoMicName／-demoFolderDisplay／-demoLevels／-demoElapsed。
+    /// 錄音放最後：錄下的短檔只留在示範資料夾，之後由腳本刪掉。
+    private static func runDemo(_ dir: URL, prefix: String) async {
+        NSApp.appearance = NSAppearance(named: .aqua)
+        await sleep(1.5)
+        func activate() {
+            NSApp.activate(ignoringOtherApps: true)
+            mainWindow?.makeKeyAndOrderFront(nil)
+        }
+        // 截圖前等視窗成為作用中（紅綠燈才有顏色）；最多等 3 秒
+        func shoot(_ name: String) async {
+            for _ in 0..<30 where !(mainWindow?.isKeyWindow ?? false) { activate(); await sleep(0.1) }
+            if !(mainWindow?.isKeyWindow ?? false) { DebugLog.write("snapshot: \(name) window not key") }
+            capture(name, dir)
+        }
+        activate(); await sleep(0.8)
+        await shoot("\(prefix)-1-ready")
+        let store = AppModel.shared.store, player = AppModel.shared.player
+        if let r = store.recordings.first {
+            activate()
+            NotificationCenter.default.post(name: TranscribeButton.debugExpand, object: r.url, userInfo: ["on": true])
+            await sleep(0.8)
+            await shoot("\(prefix)-light-transcribe-hover")
+            NotificationCenter.default.post(name: TranscribeButton.debugExpand, object: r.url, userInfo: ["on": false])
+            await sleep(0.5)
+            // 長錄音播到中段（示範檔是靜音，播放不出聲）
+            player.play(r.url)
+            player.seek(to: player.duration * (UserDefaults.standard.object(forKey: "demoPlayFraction") as? Double ?? 0.45))
+            activate(); await sleep(1.0)
+            await shoot("\(prefix)-4-playing")
+            player.stop()
+            await sleep(0.4)
+        }
+        let mock = MenuMock(items: [L("action.play"), L("action.transcribe"), L("action.revealInFinder"), "-",
+                                    L("action.rename"), L("action.delete"), L("action.convert") + "  ›"],
+                            sub: ExportFormat.allCases.map(\.title))
+        let ren = ImageRenderer(content: mock.environment(\.layoutDirection, NSApp.userInterfaceLayoutDirection == .rightToLeft ? .rightToLeft : .leftToRight))
+        ren.scale = 2
+        if let img = ren.nsImage, let tiff = img.tiffRepresentation,
+           let png = NSBitmapImageRep(data: tiff)?.representation(using: .png, properties: [:]) {
+            try? png.write(to: dir.appendingPathComponent("\(prefix)-7-convert-menu.png"))
+        }
+        // 錄音中：兩軌電平（-demoLevels）＋示範計時（-demoElapsed）
+        let rec = AppModel.shared.recorder
+        rec.start()
+        for _ in 0..<60 where rec.phase != .recording { await sleep(0.25) }
+        activate(); await sleep(2.5)
+        await shoot("\(prefix)-2-recording")
+        rec.stopNow()
+        await sleep(1.5)
+        NSApp.terminate(nil)
     }
 
     /// 一鍵上傳到 Osmi：上傳中（按鈕＋右上提示區）、失敗（重試）。用 -osmiBaseURL 指向測試伺服器（可限速）。
@@ -291,5 +347,23 @@ private struct MenuMock: View {
         .padding(.vertical, 5)
         .fixedSize()
         .background(RoundedRectangle(cornerRadius: 7).fill(Color(nsColor: .controlBackgroundColor)).shadow(radius: 3))
+    }
+}
+
+/// 示範截圖用的畫面覆寫：只認啟動參數（不會存進使用者設定），只改顯示、不改錄進檔案的內容。
+enum DemoMode {
+    private static var args: [String: Any] { UserDefaults.standard.volatileDomain(forName: UserDefaults.argumentDomain) }
+    /// -demoMicName "Built-in Microphone"：提示區顯示的麥克風名稱
+    static var micName: String? { args["demoMicName"] as? String }
+    /// -demoFolderDisplay "~/Music/AudioMemo"：設定畫面顯示的資料夾路徑
+    static var folderDisplay: String? { args["demoFolderDisplay"] as? String }
+    /// -demoElapsed 754：錄音計時從這個秒數起算（只影響顯示）
+    static var elapsedOffset: TimeInterval { (args["demoElapsed"] as? String).flatMap(Double.init) ?? 0 }
+    /// -demoLevels YES：兩軌電平都顯示像講話的起伏、高度接近
+    static func levels(at t: TimeInterval) -> (mic: Float, sys: Float)? {
+        guard (args["demoLevels"] as? String).map({ $0 == "YES" || $0 == "1" }) == true else { return nil }
+        let a = 0.66 + 0.06 * sin(t * 7.3) + 0.03 * sin(t * 17.9)
+        let b = 0.63 + 0.06 * sin(t * 6.1 + 1.7) + 0.03 * sin(t * 15.2 + 0.4)
+        return (Float(a), Float(b))
     }
 }

@@ -307,7 +307,7 @@ struct SettingsView: View {
                 .fixedSize(horizontal: false, vertical: true)
             LabeledContent(L("settings.folder")) {
                 HStack(spacing: 8) {
-                    Button(FileStore.displayPath(FileStore.folder)) {
+                    Button(DemoMode.folderDisplay ?? FileStore.displayPath(FileStore.folder)) {
                         try? FileStore.ensureFolder()
                         NSWorkspace.shared.open(FileStore.folder)
                     }

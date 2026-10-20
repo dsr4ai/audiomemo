@@ -127,7 +127,7 @@ struct RecordingPanel: View {
         if let n = notices.current {
             return FlapItem(symbol: n.symbol, text: n.text, color: n.color, dismissible: n.isSticky || isError(n))
         }
-        let name = mics.active?.name ?? L("settings.noMic")
+        let name = DemoMode.micName ?? mics.active?.name ?? L("settings.noMic")
         let text = mics.followsSystem ? String(format: L("mic.followingSystem"), name) : name
         return FlapItem(symbol: "mic", text: text, color: Theme.ink2)
     }
