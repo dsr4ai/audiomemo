@@ -42,7 +42,25 @@ enum SnapshotRunner {
         func shoot(_ name: String) async {
             for _ in 0..<30 where !(mainWindow?.isKeyWindow ?? false) { activate(); await sleep(0.1) }
             if !(mainWindow?.isKeyWindow ?? false) { DebugLog.write("snapshot: \(name) window not key") }
+            if (mainWindow?.backingScaleFactor ?? 2) < 2 {
+                // 1x 螢幕：先拍一張完整的（字較糊）＝ <name>__full；再把自己畫的圖層改 2x 重畫拍一張（字銳利，但部分圖片會不見）。
+                // 兩張由 scripts/merge_snapshot_2x.py 合成：字取銳利版、空掉的圖片區塊取完整版。拍完恢復 1x 並切換外觀強制全部重建。
+                capture(name + "__full", dir)
+                if let root = mainWindow?.contentView?.superview?.layer { setScale(root, 2) }
+                await sleep(0.3)
+                capture(name, dir)
+                if let root = mainWindow?.contentView?.superview?.layer { setScale(root, 1) }
+                let ap = NSApp.appearance
+                NSApp.appearance = NSAppearance(named: .darkAqua); await sleep(0.2)
+                NSApp.appearance = ap; await sleep(0.4)
+                return
+            }
             capture(name, dir)
+        }
+        // 移到解析度最高的螢幕（外接 1x 螢幕上畫出來的字會糊）
+        if let win = mainWindow, let scr = NSScreen.screens.max(by: { $0.backingScaleFactor < $1.backingScaleFactor }) {
+            let v = scr.visibleFrame
+            win.setFrameOrigin(NSPoint(x: v.midX - win.frame.width / 2, y: v.midY - win.frame.height / 2))
         }
         activate(); await sleep(0.8)
         await shoot("\(prefix)-1-ready")
@@ -239,6 +257,11 @@ enum SnapshotRunner {
         DebugLog.write("snapshot(layer): \(name).png")
     }
 
+    private static func setScale(_ l: CALayer, _ k: CGFloat) {
+        if l.delegate != nil { l.contentsScale = k; l.setNeedsDisplay() }
+        l.sublayers?.forEach { setScale($0, k) }
+    }
+
     private static func captureWindow(_ win: NSWindow, _ name: String, _ dir: URL) {
         guard let view = win.contentView?.superview ?? win.contentView else { return }
         let scale = win.backingScaleFactor
@@ -265,8 +288,14 @@ enum SnapshotRunner {
               let content = win.contentView else { DebugLog.write("snapshot: no window for \(name)"); return }
         let view = content.superview ?? content   // 含標題列
         view.layoutSubtreeIfNeeded()
-        guard let rep = view.bitmapImageRepForCachingDisplay(in: view.bounds) else { return }
-        view.cacheDisplay(in: view.bounds, to: rep)
+        // 一律輸出 2 倍像素（外接 1x 螢幕時 bitmapImageRepForCachingDisplay 只會給 1x）
+        let b = view.bounds
+        guard let blank = NSBitmapImageRep(bitmapDataPlanes: nil, pixelsWide: Int(b.width * 2), pixelsHigh: Int(b.height * 2),
+                                           bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true, isPlanar: false,
+                                           colorSpaceName: .deviceRGB, bytesPerRow: 0, bitsPerPixel: 0),
+              let rep = blank.retagging(with: .sRGB) else { return }
+        rep.size = b.size
+        view.cacheDisplay(in: b, to: rep)
         let url = dir.appendingPathComponent("\(name).png")
         try? rep.representation(using: .png, properties: [:])?.write(to: url)
         DebugLog.write("snapshot: \(url.lastPathComponent)")
