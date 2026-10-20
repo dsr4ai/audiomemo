@@ -4,7 +4,7 @@
 
 **Record every sound on your computer — meetings, videos, anything — together with your microphone, into one file.**
 
-AudioMemo is a small, free, open-source recorder. It captures the system audio mix (whatever any app plays, whether you listen on AirPods, wired headphones, Bluetooth or built-in speakers) plus your microphone, and saves an `.m4a` on your own disk. No account, no upload, no AI.
+AudioMemo is a small, free, open-source recorder. It captures the system audio mix (whatever any app plays, whether you listen on AirPods, wired headphones, Bluetooth or built-in speakers) plus your microphone, and saves an `.m4a` on your own disk. No account, nothing uploaded unless you ask.
 
 > Screenshots: _(to be added)_
 
@@ -15,6 +15,7 @@ AudioMemo is a small, free, open-source recorder. It captures the system audio m
 - Automatic level balancing (quiet voices brought up, background noise not amplified), peak limiter
 - Microphone follows the system (and the mic your call app uses); switching devices never stops a recording
 - Recordings list: play inside the app, rename inline, share, show in Finder, convert to MP3 / WAV / FLAC / AIFF
+- One click "Transcribe with Osmi": uploads the recording to Osmi (BookAI) with progress / cancel / retry, then opens Osmi in your browser
 - Menu-bar control, light & dark mode, 13 languages (more coming; see `i18n/`)
 - Loudspeaker echo cancellation (experimental, off by default — see `docs/TESTING.md`)
 
@@ -58,7 +59,7 @@ If you clicked "Don't Allow": System Settings › Privacy & Security › *Microp
 
 ## Privacy
 
-AudioMemo records only when you press record, keeps files on your Mac (`~/Music/AudioMemo` by default), never uploads anything and collects no analytics. "Transcribe" simply opens a web page in your browser and selects the file in Finder; nothing is sent by the app itself.
+AudioMemo records only when you press record and keeps files on your Mac (`~/Music/AudioMemo` by default). It collects no analytics and makes no network requests on its own. The only exception is **Transcribe with Osmi**: when you press it, that one recording (plus its file name, size, length and the app version) is uploaded to Osmi, BookAI's transcription service, and the Osmi page opens in your browser to finish. Nothing else is ever sent.
 
 Content protected by DRM may be recorded as silence.
 
@@ -72,9 +73,9 @@ Apache License 2.0 — see `LICENSE` and `NOTICE`. The AudioMemo and Osmi names,
 
 **把電腦播出的所有聲音（會議、影片…）和你的麥克風，一起錄成一個檔案。**
 
-AudioMemo 是免費、開源的小錄音工具：錄下系統混音（任何 App 的聲音，不論你用 AirPods、有線耳機、藍牙或內建喇叭）加上麥克風，存成 `.m4a` 在你自己的電腦。不用帳號、不上傳、沒有 AI。
+AudioMemo 是免費、開源的小錄音工具：錄下系統混音（任何 App 的聲音，不論你用 AirPods、有線耳機、藍牙或內建喇叭）加上麥克風，存成 `.m4a` 在你自己的電腦。不用帳號；除非你自己按下，不會上傳任何東西。
 
 - 建置：見上方 Build。
 - 第一次錄音會跳出兩個視窗，都按「允許」：麥克風、錄製這台電腦的音訊。按錯可到「系統設定 › 隱私權與安全性 › 麥克風」與「螢幕與系統錄音 › 僅限系統錄音」打開。
-- 隱私：只在你按錄音時錄；檔案存在你的 Mac（預設 `~/音樂/AudioMemo`），App 不上傳任何東西、不收集使用資料。
+- 隱私：只在你按錄音時錄；檔案存在你的 Mac（預設 `~/音樂/AudioMemo`），不收集使用資料，平常完全不連網。唯一例外是「讓Osmi聽寫逐字稿」：你按下時，才會把那一個錄音（連同檔名、大小、長度、App 版本）上傳到 BookAI 的 Osmi，並在瀏覽器打開 Osmi 完成後續。
 - 授權：Apache 2.0。AudioMemo 與 Osmi 的名稱、標誌與 App 圖示是 BookAI 的商標，不在授權範圍內。
