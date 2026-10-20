@@ -219,23 +219,6 @@ final class FileStore: ObservableObject {
 
     static func revealInFinder(_ r: Recording) { NSWorkspace.shared.activateFileViewerSelecting([r.url]) }
 
-    static let osmiURL = URL(string: "https://meeting.bookai.com/app")!
-
-    /// 送到 Osmi（MVP）：開瀏覽器到 Osmi，同時在 Finder 選取檔案，讓使用者拖進去上傳。
-    static func sendToOsmi(_ r: Recording) {
-        // 1) 先在 Finder 選好檔案（Finder 視窗開在後面）  2) 再把 Osmi 開在最前面。
-        // 使用者看到 Osmi 頁面，把 Finder 裡已選好的檔案拖進去上傳。
-        // ⚠ macOS 14 起是「合作式啟用」：瀏覽器搶到前景後，本 App 就叫不動 Finder（實測），所以 Finder 一定要先做。
-        if let finder = NSRunningApplication.runningApplications(withBundleIdentifier: "com.apple.finder").first {
-            NSApp.yieldActivation(to: finder)
-        }
-        NSWorkspace.shared.activateFileViewerSelecting([r.url])
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-            NSWorkspace.shared.open(osmiURL)
-            DebugLog.write("sendToOsmi \(r.url.lastPathComponent)")
-        }
-    }
-
     static let sizeFormatter: ByteCountFormatter = {
         let f = ByteCountFormatter()
         f.countStyle = .file

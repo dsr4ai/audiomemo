@@ -423,6 +423,58 @@
     "settings.folder": {
       "en": "Recordings folder",
       "zh-Hant": "錄音資料夾"
+    },
+    "upload.preparing": {
+      "en": "Preparing upload to Osmi…",
+      "zh-Hant": "準備上傳到 Osmi…"
+    },
+    "upload.progress": {
+      "en": "Uploading to Osmi… %d%%",
+      "zh-Hant": "正在上傳到 Osmi… %d%%"
+    },
+    "upload.failed": {
+      "en": "Upload failed: %@",
+      "zh-Hant": "上傳失敗：%@"
+    },
+    "upload.preparingShort": {
+      "en": "Preparing…",
+      "zh-Hant": "準備中…"
+    },
+    "upload.progressShort": {
+      "en": "Uploading %d%%",
+      "zh-Hant": "上傳中 %d%%"
+    },
+    "upload.openingShort": {
+      "en": "Opening Osmi…",
+      "zh-Hant": "正在打開 Osmi…"
+    },
+    "upload.cancelHelp": {
+      "en": "Click to cancel the upload",
+      "zh-Hant": "按一下取消上傳"
+    },
+    "upload.httpError": {
+      "en": "server error %d",
+      "zh-Hant": "伺服器錯誤 %d"
+    },
+    "upload.badResponse": {
+      "en": "unexpected reply from the server",
+      "zh-Hant": "伺服器回應不正確"
+    },
+    "notice.uploadDone": {
+      "en": "Uploaded — finish in your browser",
+      "zh-Hant": "已上傳，請在瀏覽器完成"
+    },
+    "action.retry": {
+      "en": "Retry",
+      "zh-Hant": "重試"
+    },
+    "upload.finishing": {
+      "en": "Finishing upload to Osmi…",
+      "zh-Hant": "上傳到 Osmi，即將完成…"
+    },
+    "upload.finishingShort": {
+      "en": "Finishing…",
+      "zh-Hant": "即將完成…"
     }
   },
   "infoPlist": {

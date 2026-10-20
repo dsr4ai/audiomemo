@@ -1578,6 +1578,89 @@
         }
       }
     },
+    "action.retry": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Retry"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Retry"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Retry"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Retry"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Retry"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Retry"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Retry"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Retry"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Retry"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Retry"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "重試"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Retry"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重試"
+          }
+        }
+      }
+    },
     "action.revealInFinder": {
       "extractionState": "manual",
       "localizations": {
@@ -5566,6 +5649,89 @@
         }
       }
     },
+    "notice.uploadDone": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploaded — finish in your browser"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploaded — finish in your browser"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uploaded — finish in your browser"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Uploaded — finish in your browser"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploaded — finish in your browser"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploaded — finish in your browser"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploaded — finish in your browser"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploaded — finish in your browser"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploaded — finish in your browser"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploaded — finish in your browser"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "已上傳，請在瀏覽器完成"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploaded — finish in your browser"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已上傳，請在瀏覽器完成"
+          }
+        }
+      }
+    },
     "player.position": {
       "extractionState": "manual",
       "localizations": {
@@ -8636,6 +8802,919 @@
           "stringUnit": {
             "state": "translated",
             "value": "讓Osmi聽寫逐字稿"
+          }
+        }
+      }
+    },
+    "upload.badResponse": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "new",
+            "value": "unexpected reply from the server"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "unexpected reply from the server"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "unexpected reply from the server"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "unexpected reply from the server"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "new",
+            "value": "unexpected reply from the server"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "new",
+            "value": "unexpected reply from the server"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "new",
+            "value": "unexpected reply from the server"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "new",
+            "value": "unexpected reply from the server"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "new",
+            "value": "unexpected reply from the server"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "new",
+            "value": "unexpected reply from the server"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "伺服器回應不正確"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "new",
+            "value": "unexpected reply from the server"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "伺服器回應不正確"
+          }
+        }
+      }
+    },
+    "upload.cancelHelp": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Click to cancel the upload"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Click to cancel the upload"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Click to cancel the upload"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Click to cancel the upload"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Click to cancel the upload"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Click to cancel the upload"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Click to cancel the upload"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Click to cancel the upload"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Click to cancel the upload"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Click to cancel the upload"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "按一下取消上傳"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Click to cancel the upload"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按一下取消上傳"
+          }
+        }
+      }
+    },
+    "upload.failed": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Upload failed: %@"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Upload failed: %@"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Upload failed: %@"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Upload failed: %@"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Upload failed: %@"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Upload failed: %@"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Upload failed: %@"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Upload failed: %@"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Upload failed: %@"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Upload failed: %@"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "上傳失敗：%@"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Upload failed: %@"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上傳失敗：%@"
+          }
+        }
+      }
+    },
+    "upload.finishing": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Finishing upload to Osmi…"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Finishing upload to Osmi…"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finishing upload to Osmi…"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Finishing upload to Osmi…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Finishing upload to Osmi…"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Finishing upload to Osmi…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Finishing upload to Osmi…"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Finishing upload to Osmi…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Finishing upload to Osmi…"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Finishing upload to Osmi…"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "上傳到 Osmi，即將完成…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Finishing upload to Osmi…"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上傳到 Osmi，即將完成…"
+          }
+        }
+      }
+    },
+    "upload.finishingShort": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Finishing…"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Finishing…"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finishing…"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Finishing…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Finishing…"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Finishing…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Finishing…"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Finishing…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Finishing…"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Finishing…"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "即將完成…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Finishing…"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "即將完成…"
+          }
+        }
+      }
+    },
+    "upload.httpError": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "new",
+            "value": "server error %d"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "server error %d"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "server error %d"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "server error %d"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "new",
+            "value": "server error %d"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "new",
+            "value": "server error %d"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "new",
+            "value": "server error %d"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "new",
+            "value": "server error %d"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "new",
+            "value": "server error %d"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "new",
+            "value": "server error %d"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "伺服器錯誤 %d"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "new",
+            "value": "server error %d"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "伺服器錯誤 %d"
+          }
+        }
+      }
+    },
+    "upload.openingShort": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Opening Osmi…"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Opening Osmi…"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opening Osmi…"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Opening Osmi…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Opening Osmi…"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Opening Osmi…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Opening Osmi…"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Opening Osmi…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Opening Osmi…"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Opening Osmi…"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "正在打開 Osmi…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Opening Osmi…"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在打開 Osmi…"
+          }
+        }
+      }
+    },
+    "upload.preparing": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Preparing upload to Osmi…"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Preparing upload to Osmi…"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparing upload to Osmi…"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Preparing upload to Osmi…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Preparing upload to Osmi…"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Preparing upload to Osmi…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Preparing upload to Osmi…"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Preparing upload to Osmi…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Preparing upload to Osmi…"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Preparing upload to Osmi…"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "準備上傳到 Osmi…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Preparing upload to Osmi…"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "準備上傳到 Osmi…"
+          }
+        }
+      }
+    },
+    "upload.preparingShort": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Preparing…"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Preparing…"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preparing…"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Preparing…"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Preparing…"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Preparing…"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Preparing…"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Preparing…"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Preparing…"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Preparing…"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "準備中…"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Preparing…"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "準備中…"
+          }
+        }
+      }
+    },
+    "upload.progress": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploading to Osmi… %d%%"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploading to Osmi… %d%%"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uploading to Osmi… %d%%"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Uploading to Osmi… %d%%"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploading to Osmi… %d%%"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploading to Osmi… %d%%"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploading to Osmi… %d%%"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploading to Osmi… %d%%"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploading to Osmi… %d%%"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploading to Osmi… %d%%"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "正在上傳到 Osmi… %d%%"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploading to Osmi… %d%%"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在上傳到 Osmi… %d%%"
+          }
+        }
+      }
+    },
+    "upload.progressShort": {
+      "extractionState": "manual",
+      "localizations": {
+        "ar": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploading %d%%"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploading %d%%"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uploading %d%%"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Uploading %d%%"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploading %d%%"
+          }
+        },
+        "es-MX": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploading %d%%"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploading %d%%"
+          }
+        },
+        "hu": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploading %d%%"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploading %d%%"
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploading %d%%"
+          }
+        },
+        "zh-HK": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "上傳中 %d%%"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Uploading %d%%"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "上傳中 %d%%"
           }
         }
       }

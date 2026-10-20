@@ -8,6 +8,7 @@ enum Notice: Equatable {
     case deviceLost(device: String)                 // 選的麥克風不見了，改用系統預設
     case bluetoothWarning(device: String)           // 藍牙麥克風音質提醒（要使用者關掉）
     case exportDone(file: String)                   // 轉檔完成
+    case uploadDone(file: String)                   // 已上傳到 Osmi，正在打開網頁
     case tooShort                                   // 錄音太短沒存
     case message(String)                            // 其他（錯誤訊息等，文字已在字典取好）
 
@@ -19,6 +20,7 @@ enum Notice: Equatable {
         case .deviceLost(let device): String(format: L("notice.deviceLost"), device)
         case .bluetoothWarning: L("notice.bluetooth")
         case .exportDone(let file): String(format: L("notice.exportDone"), file)
+        case .uploadDone: L("notice.uploadDone")
         case .tooShort: L("notice.tooShort")
         case .message(let m): m
         }
@@ -29,7 +31,7 @@ enum Notice: Equatable {
         case .followedApp, .followedInUse, .switchedDevice: "arrow.triangle.2.circlepath"
         case .deviceLost: "mic.slash"
         case .bluetoothWarning: "exclamationmark.triangle"
-        case .exportDone: "checkmark.circle"
+        case .exportDone, .uploadDone: "checkmark.circle"
         case .tooShort, .message: "info.circle"
         }
     }
@@ -99,6 +101,16 @@ struct FlapItem: Equatable {
     var text: String
     var color: Color
     var dismissible = false
+    /// 同一個 key 只更新文字、不翻牌（例如上傳進度 12% → 13%）；key 變了才翻牌。nil＝用文字當 key。
+    var key: String? = nil
+    /// 額外的動作按鈕（例如「取消」「重試」），按下時把 id 傳回 onAction
+    var actions: [FlapAction] = []
+    var flipKey: String { key ?? text }
+}
+
+struct FlapAction: Equatable {
+    let id: String
+    let title: String
 }
 
 /// 時鐘翻牌（split-flap）：換字時舊字上半往下翻、新字下半翻上來（合計約 0.28 秒，ease-out）；
@@ -106,6 +118,7 @@ struct FlapItem: Equatable {
 struct FlapText: View {
     let item: FlapItem
     var onDismiss: (() -> Void)?
+    var onAction: ((String) -> Void)? = nil
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     /// 除錯：-slowFlap YES 時放慢 6 倍（自我截圖連拍用）
     private static let slow = UserDefaults.standard.bool(forKey: "slowFlap") ? 6.0 : 1.0
@@ -154,6 +167,7 @@ struct FlapText: View {
         .onPreferenceChange(FlapHeightKey.self) { if $0 > 0 && !flipping { cellHeight = $0 } }
         .onAppear { shown = item }
         .onChange(of: item) { prev, newItem in
+            if prev.flipKey == newItem.flipKey { shown = newItem; return }   // 同一則提示只換內容，不翻牌
             if reduceMotion {
                 withAnimation(.easeInOut(duration: 0.25)) { shown = newItem }
             } else {
@@ -173,6 +187,12 @@ struct FlapText: View {
                 .minimumScaleFactor(0.85)
                 .multilineTextAlignment(.trailing)
                 .fixedSize(horizontal: false, vertical: true)
+            ForEach(it.actions, id: \.id) { a in
+                Button(a.title) { onAction?(a.id) }
+                    .buttonStyle(.link)
+                    .font(.system(size: Theme.fsSmall))
+                    .fixedSize()
+            }
             if it.dismissible, let onDismiss {
                 Button(L("action.dismiss"), action: onDismiss)
                     .buttonStyle(.link)

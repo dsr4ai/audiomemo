@@ -17,5 +17,8 @@
 	<true/>
 	<key>com.apple.security.files.bookmarks.app-scope</key>
 	<true/>
+	<!-- network.client: only used when the user presses "Transcribe with Osmi" (upload to Osmi). -->
+	<key>com.apple.security.network.client</key>
+	<true/>
 </dict>
 </plist>

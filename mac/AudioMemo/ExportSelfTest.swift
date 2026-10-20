@@ -100,3 +100,27 @@ enum VPIOSelfTest {
         return true
     }
 }
+
+/// 測試用：`-uploadTest <檔案> -osmiBaseURL <網址> -osmiNoOpen YES`：走一次「讓Osmi聽寫逐字稿」上傳流程，結果寫進 debug.log 後結束。
+@MainActor
+enum UploadSelfTest {
+    static func runIfRequested() {
+        guard let path = UserDefaults.standard.string(forKey: "uploadTest") else { return }
+        let url = URL(fileURLWithPath: (path as NSString).expandingTildeInPath)
+        let size = (try? FileManager.default.attributesOfItem(atPath: url.path)[.size] as? Int64) ?? 0
+        let rec = Recording(url: url, created: Date(), size: size, duration: 12.3)
+        let up = AppModel.shared.uploader
+        up.start(rec)
+        Task {
+            var last = ""
+            while true {
+                try? await Task.sleep(nanoseconds: 50_000_000)
+                let s = "\(up.phase)"
+                if s != last { DebugLog.write("uploadTest phase: \(s)"); last = s }
+                if case .failed = up.phase { break }
+                if up.phase == .idle { break }
+            }
+            NSApp.terminate(nil)
+        }
+    }
+}

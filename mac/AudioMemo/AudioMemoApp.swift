@@ -29,6 +29,7 @@ struct AudioMemoApp: App {
                 .environmentObject(AppModel.shared.player)
                 .environmentObject(AppModel.shared.exporter)
                 .environmentObject(AppModel.shared.notices)
+                .environmentObject(AppModel.shared.uploader)
                 .environmentObject(AppModel.shared.mics)
         }
         .defaultSize(width: 620, height: 720)
@@ -57,6 +58,7 @@ final class AppModel {
     let player = PlaybackController()
     let exporter = Exporter()
     let notices = NoticeCenter()
+    let uploader = OsmiUploader()
     lazy var mics: MicrophoneManager = {
         let m = MicrophoneManager()
         m.onChange = { [unowned self] dev, notice in self.recorder.microphoneChanged(to: dev, notice: notice) }
@@ -75,6 +77,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             AppModel.shared.recorder.runAutotestIfRequested()
             SnapshotRunner.runIfRequested()
             ExportSelfTest.runIfRequested()
+            UploadSelfTest.runIfRequested()
         }
     }
 

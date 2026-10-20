@@ -205,7 +205,7 @@ struct RecordingRow: View {
 
             // 右：固定大小的按鈕區（播放與否、視窗寬窄都一樣）
             HStack(spacing: 6) {
-                TranscribeButton(url: recording.url) { FileStore.sendToOsmi(recording) }
+                TranscribeButton(recording: recording)
 
                 LabeledIcon(title: L("label.share")) {
                     ShareButton(url: recording.url).frame(width: 24, height: 22)
@@ -238,7 +238,8 @@ struct RecordingRow: View {
 
     @ViewBuilder private var rowMenu: some View {
         Button(isCurrent && player.isPlaying ? L("action.pausePlayback") : L("action.play"), action: togglePlay)
-        Button(L("action.transcribe")) { FileStore.sendToOsmi(recording) }
+        Button(L("action.transcribe")) { AppModel.shared.uploader.start(recording) }
+            .disabled(AppModel.shared.uploader.isBusy)
         Button(L("action.revealInFinder")) { FileStore.revealInFinder(recording) }
         Menu(L("action.convert")) {
             ForEach(ExportFormat.allCases) { f in
@@ -393,8 +394,8 @@ struct LabeledIcon<Content: View>: View {
 /// 展開的部分浮在上層、不參與排版，不擠壓同一列其他按鈕。系統「減少動態效果」時改淡入。
 /// 行為：開 Osmi 網頁＋Finder 選取檔案。
 struct TranscribeButton: View {
-    let url: URL
-    let action: () -> Void
+    let recording: Recording
+    @EnvironmentObject var uploader: OsmiUploader
     @State private var hover = false
     @FocusState private var focused: Bool
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
@@ -403,14 +404,37 @@ struct TranscribeButton: View {
     /// 展開時的底色：AudioMemo 聲波青深 #299898（淺、深色模式同一色；白字對比 3.48:1）
     static let expandedFill = Color(red: 0x29 / 255, green: 0x98 / 255, blue: 0x98 / 255)
 
-    private var expanded: Bool { hover || focused }
+    private var url: URL { recording.url }
+    private var mine: Bool { uploader.file?.standardizedFileURL == url.standardizedFileURL }
+    /// 這一列正在上傳／失敗：按鈕一直展開，顯示進度或「重試」
+    private var active: Bool { mine && uploader.phase != .idle }
+    private var expanded: Bool { hover || focused || active }
+
+    private var label: String {
+        guard mine else { return L("transcribe.explain") }
+        switch uploader.phase {
+        case .preparing: return L("upload.preparingShort")
+        case .uploading(let p): return p >= 0.999 ? L("upload.finishingShort") : String(format: L("upload.progressShort"), Int(p * 100))
+        case .opening: return L("upload.openingShort")
+        case .failed: return L("action.retry")
+        case .idle: return L("transcribe.explain")
+        }
+    }
+
+    /// 按一下：沒在傳→開始上傳；正在傳→取消；失敗→重試
+    private func action() {
+        if mine, case .failed = uploader.phase { uploader.retry(); return }
+        if mine, uploader.isBusy { uploader.cancel(); return }
+        uploader.start(recording)
+    }
 
     var body: some View {
         Button(action: action) {
             // 展開時說明文字在標誌前方（LTR 左、RTL 右），按鈕往前方長出來，把同一列左側的資訊擠窄（不重疊）
             HStack(spacing: 6) {
                 if expanded {
-                    Text(L("transcribe.explain"))
+                    Text(label)
+                        .monospacedDigit()
                         .font(.system(size: Theme.fsSmall, weight: .medium))
                         .foregroundStyle(.white)
                         .lineLimit(1)
@@ -436,6 +460,8 @@ struct TranscribeButton: View {
         .focused($focused)
         .onHover { h in withAnimation(anim) { hover = h } }
         .animation(anim, value: focused)
+        .disabled(uploader.isBusy && !mine)
+        .help(mine && uploader.isBusy ? L("upload.cancelHelp") : L("transcribe.explain"))
         .accessibilityLabel(L("action.transcribe"))
         .accessibilityHint(L("transcribe.explain"))
         .onReceive(NotificationCenter.default.publisher(for: Self.debugExpand)) { n in

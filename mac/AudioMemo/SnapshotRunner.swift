@@ -13,7 +13,9 @@ enum SnapshotRunner {
         }
         let dir = URL(fileURLWithPath: (out as NSString).expandingTildeInPath, isDirectory: true)
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
-        if UserDefaults.standard.string(forKey: "snapshotSet") == "transcribe" {
+        if UserDefaults.standard.string(forKey: "snapshotSet") == "upload" {
+            Task { await runUpload(dir, prefix: UserDefaults.standard.string(forKey: "snapshotPrefix") ?? "x") }
+        } else if UserDefaults.standard.string(forKey: "snapshotSet") == "transcribe" {
             Task { await runTranscribe(dir, prefix: UserDefaults.standard.string(forKey: "snapshotPrefix") ?? "x") }
         } else if UserDefaults.standard.string(forKey: "snapshotSet") == "list" {
             Task { await runList(dir, prefix: UserDefaults.standard.string(forKey: "snapshotPrefix") ?? "x") }
@@ -22,6 +24,23 @@ enum SnapshotRunner {
         } else {
             Task { await run(dir) }
         }
+    }
+
+    /// 一鍵上傳到 Osmi：上傳中（按鈕＋右上提示區）、失敗（重試）。用 -osmiBaseURL 指向測試伺服器（可限速）。
+    private static func runUpload(_ dir: URL, prefix: String) async {
+        await sleep(1.5)
+        guard let r = AppModel.shared.store.recordings.first else { NSApp.terminate(nil); return }
+        let up = AppModel.shared.uploader
+        for (theme, name) in [("light", NSAppearance.Name.aqua), ("dark", .darkAqua)] {
+            NSApp.appearance = NSAppearance(named: name)
+            up.start(r)
+            for _ in 0..<100 { if case .uploading(let p) = up.phase, p > 0.3 { break }; await sleep(0.1) }
+            await sleep(0.4)
+            capture("\(prefix)-\(theme)-upload-progress", dir)
+            up.cancel()
+            await sleep(0.6)
+        }
+        NSApp.terminate(nil)
     }
 
     /// 「轉成逐字稿」按鈕 hover 前後（淺／深色）。

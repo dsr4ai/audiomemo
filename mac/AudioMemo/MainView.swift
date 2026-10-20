@@ -27,6 +27,7 @@ struct RecordingPanel: View {
     @EnvironmentObject var recorder: RecordingController
     @EnvironmentObject var player: PlaybackController
     @EnvironmentObject var notices: NoticeCenter
+    @EnvironmentObject var uploader: OsmiUploader
     @EnvironmentObject var mics: MicrophoneManager
 
     private var recording: Bool { recorder.phase == .recording }
@@ -38,7 +39,13 @@ struct RecordingPanel: View {
                                                        playing: player.isPlaying))
                 Spacer(minLength: 12)
                 // 提示區：平常顯示目前的麥克風；有提示時用翻牌換字，約 4 秒後翻回
-                FlapText(item: flapItem, onDismiss: dismissNotice)
+                FlapText(item: flapItem, onDismiss: dismissNotice, onAction: { id in
+                    switch id {
+                    case "cancel": uploader.cancel()
+                    case "retry": uploader.retry()
+                    default: uploader.reset()
+                    }
+                })
                     .layoutPriority(-1)
             }
 
@@ -101,6 +108,22 @@ struct RecordingPanel: View {
 
     /// 提示區目前的內容：有提示就顯示提示，沒有就顯示常駐的「目前麥克風」。
     private var flapItem: FlapItem {
+        // 上傳到 Osmi 的進度優先顯示（同一個 key：進度更新不翻牌）
+        switch uploader.phase {
+        case .preparing:
+            return FlapItem(symbol: "arrow.up.circle", text: L("upload.preparing"), color: Theme.primaryText, key: "upload",
+                            actions: [FlapAction(id: "cancel", title: L("action.cancel"))])
+        case .uploading(let p):
+            // 送完最後一個位元組後還要等伺服器回應：顯示「完成中」而不是停在 100%
+            return FlapItem(symbol: "arrow.up.circle", text: p >= 0.999 ? L("upload.finishing") : String(format: L("upload.progress"), Int(p * 100)), color: Theme.primaryText,
+                            key: "upload", actions: [FlapAction(id: "cancel", title: L("action.cancel"))])
+        case .failed(let msg):
+            return FlapItem(symbol: "exclamationmark.triangle", text: String(format: L("upload.failed"), msg), color: Theme.warn,
+                            key: "upload-failed", actions: [FlapAction(id: "retry", title: L("action.retry")),
+                                                             FlapAction(id: "close", title: L("action.dismiss"))])
+        case .opening, .idle:
+            break
+        }
         if let n = notices.current {
             return FlapItem(symbol: n.symbol, text: n.text, color: n.color, dismissible: n.isSticky || isError(n))
         }
