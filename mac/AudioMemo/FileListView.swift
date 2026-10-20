@@ -400,7 +400,8 @@ struct TranscribeButton: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     static let debugExpand = Notification.Name("AudioMemoDebugExpandTranscribe")
     static let markSize: CGFloat = 22
-    static let deepBlue = Color(red: 0x0B / 255, green: 0x4D / 255, blue: 0x83 / 255)   // tokens p700（深藍底）
+    /// 展開時的底色：AudioMemo 聲波青深 #299898（淺、深色模式同一色；白字對比 3.48:1）
+    static let expandedFill = Color(red: 0x29 / 255, green: 0x98 / 255, blue: 0x98 / 255)
 
     private var expanded: Bool { hover || focused }
 
@@ -421,12 +422,13 @@ struct TranscribeButton: View {
                     .renderingMode(.template)
                     .resizable()
                     .scaledToFit()
-                    .foregroundStyle(Theme.osmiBlue)                   // Osmi 品牌淡藍（不跟 AudioMemo 主色）
+                    // 收起：Osmi 品牌淡藍；展開：跟說明字一樣淡入成白色（跟展開動畫同一個 transaction）
+                    .foregroundStyle(expanded ? Color.white : Theme.osmiBlue)
                     .frame(width: Self.markSize, height: Self.markSize)
                     .scaleEffect(expanded && !reduceMotion ? 1.15 : 1)
                     .frame(width: 34, height: 34)
             }
-            .background(Capsule().fill(Self.deepBlue).opacity(expanded ? 1 : 0))
+            .background(Capsule().fill(Self.expandedFill).opacity(expanded ? 1 : 0))
             .contentShape(Capsule())
             .clipShape(Capsule())
         }
