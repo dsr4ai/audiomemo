@@ -51,5 +51,5 @@ cp "Support/dmg/使用說明.txt" "$HOME/Desktop/AudioMemo-$VERSION.txt"
 spctl -a -vv "$APP"
 spctl -a -vv -t open --context context:primary-signature "$DMG"
 # 6) Remove the intermediate app copies so Spotlight only finds the installed one (the DMG keeps the shipped build)
-rm -rf "$APP" ../build/mac-release/Build/Products
+rm -rf "$APP" "$STAGE" ../build/mac-release/Build/Products
 echo "完成：$DMG"
