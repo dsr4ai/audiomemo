@@ -42,12 +42,13 @@ final class OsmiAuth: NSObject, ASWebAuthenticationPresentationContextProviding 
     func signIn(_ provider: Provider) async throws {
         let verifier = Self.randomURLSafe(64)
         let challenge = Self.base64URL(Data(SHA256.hash(data: Data(verifier.utf8))))
-        var comps = URLComponents(url: Self.supabaseURL.appendingPathComponent("auth/v1/authorize"), resolvingAgainstBaseURL: false)!
+        // 起始網址走 Osmi 自己的網域（系統登入視窗顯示 meeting.bookai.com），伺服器再轉到 Supabase；token 交換照舊直接打 Supabase
+        var comps = URLComponents(url: OsmiUploader.baseURL.appendingPathComponent("auth/app/start"), resolvingAgainstBaseURL: false)!
         comps.queryItems = [
             URLQueryItem(name: "provider", value: provider.rawValue),
             URLQueryItem(name: "redirect_to", value: Self.redirectURL),
             URLQueryItem(name: "code_challenge", value: challenge),
-            URLQueryItem(name: "code_challenge_method", value: "s256"),
+            URLQueryItem(name: "code_challenge_method", value: "S256"),
         ]
         let callback: URL = try await withCheckedThrowingContinuation { cont in
             let s = ASWebAuthenticationSession(url: comps.url!, callbackURLScheme: Self.callbackScheme) { url, error in

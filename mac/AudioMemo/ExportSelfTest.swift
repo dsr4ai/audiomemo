@@ -120,6 +120,16 @@ enum UploadSelfTest {
         up.start(rec)
         Task {
             var last = ""
+            #if DEBUG
+            // -uploadTestLogin google|apple：沒登入時自動按下登入鈕（實機登入測試用；之後的登入畫面仍需要人操作），最多等 10 分鐘
+            if let prov = UserDefaults.standard.string(forKey: "uploadTestLogin").flatMap(OsmiAuth.Provider.init(rawValue:)), up.showLogin {
+                DebugLog.write("uploadTest: starting \(prov.rawValue) sign-in")
+                up.signIn(prov)
+                for _ in 0..<1200 where up.showLogin { try? await Task.sleep(nanoseconds: 500_000_000) }
+                DebugLog.write("uploadTest: sign-in finished hasSession=\(up.auth.hasSession) error=\(up.loginError ?? "-")")
+                try? await Task.sleep(nanoseconds: 300_000_000)
+            }
+            #endif
             while true {
                 try? await Task.sleep(nanoseconds: 50_000_000)
                 let s = "\(up.phase)"
