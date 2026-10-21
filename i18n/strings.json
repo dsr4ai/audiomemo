@@ -475,6 +475,46 @@
     "upload.finishingShort": {
       "en": "Finishing…",
       "zh-Hant": "即將完成…"
+    },
+    "osmi.login.title": {
+      "en": "Sign in to Osmi",
+      "zh-Hant": "登入 Osmi"
+    },
+    "osmi.login.note": {
+      "en": "Sign in once to send this recording to Osmi. Your sign-in is remembered.",
+      "zh-Hant": "登入一次即可把這段錄音送到 Osmi，之後會記住登入狀態。"
+    },
+    "osmi.login.google": {
+      "en": "Sign in with Google",
+      "zh-Hant": "使用 Google 登入"
+    },
+    "osmi.login.apple": {
+      "en": "Sign in with Apple",
+      "zh-Hant": "使用 Apple 登入"
+    },
+    "osmi.login.cancel": {
+      "en": "Cancel",
+      "zh-Hant": "取消"
+    },
+    "osmi.login.cancelled": {
+      "en": "Sign-in was cancelled.",
+      "zh-Hant": "已取消登入。"
+    },
+    "osmi.login.badResponse": {
+      "en": "Sign-in didn't complete. Please try again.",
+      "zh-Hant": "登入沒有完成，請再試一次。"
+    },
+    "settings.osmi": {
+      "en": "Osmi account",
+      "zh-Hant": "Osmi 帳號"
+    },
+    "settings.osmiSignOut": {
+      "en": "Sign out",
+      "zh-Hant": "登出"
+    },
+    "settings.osmiNotSignedIn": {
+      "en": "Not signed in",
+      "zh-Hant": "尚未登入"
     }
   },
   "infoPlist": {

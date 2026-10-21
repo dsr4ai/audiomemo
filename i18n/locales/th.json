@@ -95,5 +95,15 @@
 "settings.echoOn": "เปิดเสมอ",
 "settings.echoOff": "ปิดเสมอ",
 "action.transcribe": "ถอดเป็นข้อความ",
-"transcribe.explain": "ถอดความด้วย Osmi"
+"transcribe.explain": "ถอดเสียงด้วย Osmi",
+"osmi.login.title": "เข้าสู่ระบบ Osmi",
+"osmi.login.note": "เข้าสู่ระบบครั้งเดียว แล้วจะส่งไฟล์นี้ให้ Osmi ได้ ระบบจะจำการเข้าสู่ระบบไว้",
+"osmi.login.google": "เข้าสู่ระบบด้วย Google",
+"osmi.login.apple": "เข้าสู่ระบบด้วย Apple",
+"osmi.login.cancel": "ยกเลิก",
+"osmi.login.cancelled": "ยกเลิกการเข้าสู่ระบบแล้ว",
+"osmi.login.badResponse": "การเข้าสู่ระบบไม่สำเร็จ โปรดลองอีกครั้ง",
+"settings.osmi": "บัญชี Osmi",
+"settings.osmiSignOut": "ออกจากระบบ",
+"settings.osmiNotSignedIn": "ยังไม่ได้เข้าสู่ระบบ"
 }

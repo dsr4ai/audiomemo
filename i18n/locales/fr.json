@@ -95,5 +95,15 @@
 "settings.echoOn": "Toujours activée",
 "settings.echoOff": "Toujours désactivée",
 "action.transcribe": "Transcrire",
-"transcribe.explain": "Transcrire avec Osmi"
+"transcribe.explain": "Transcrire avec Osmi",
+"osmi.login.title": "Connexion à Osmi",
+"osmi.login.note": "Connectez-vous une fois pour envoyer cet enregistrement à Osmi. La connexion est mémorisée.",
+"osmi.login.google": "Se connecter avec Google",
+"osmi.login.apple": "Se connecter avec Apple",
+"osmi.login.cancel": "Annuler",
+"osmi.login.cancelled": "Connexion annulée.",
+"osmi.login.badResponse": "La connexion n'a pas abouti. Réessayez.",
+"settings.osmi": "Compte Osmi",
+"settings.osmiSignOut": "Se déconnecter",
+"settings.osmiNotSignedIn": "Non connecté"
 }

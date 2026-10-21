@@ -95,5 +95,15 @@
 "settings.echoOn": "Siempre activada",
 "settings.echoOff": "Siempre desactivada",
 "action.transcribe": "Transcribir",
-"transcribe.explain": "Transcribir con Osmi"
+"transcribe.explain": "Transcribir con Osmi",
+"osmi.login.title": "Iniciar sesión en Osmi",
+"osmi.login.note": "Inicia sesión una vez para enviar esta grabación a Osmi. La sesión se recuerda.",
+"osmi.login.google": "Iniciar sesión con Google",
+"osmi.login.apple": "Iniciar sesión con Apple",
+"osmi.login.cancel": "Cancelar",
+"osmi.login.cancelled": "Inicio de sesión cancelado.",
+"osmi.login.badResponse": "No se completó el inicio de sesión. Inténtalo de nuevo.",
+"settings.osmi": "Cuenta de Osmi",
+"settings.osmiSignOut": "Cerrar sesión",
+"settings.osmiNotSignedIn": "Sin sesión iniciada"
 }

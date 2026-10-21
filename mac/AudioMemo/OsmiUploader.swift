@@ -18,6 +18,11 @@ final class OsmiUploader: NSObject, ObservableObject {
 
     @Published private(set) var phase: Phase = .idle
     @Published private(set) var file: URL?
+    /// 還沒登入 Osmi：畫面顯示登入視窗；登入完成後會接著上傳 pendingRecording。
+    @Published var showLogin = false
+    @Published var loginError: String?
+    private(set) var pendingRecording: Recording?
+    let auth = OsmiAuth()
 
     var isBusy: Bool {
         switch phase { case .preparing, .uploading, .opening: return true; default: return false }
@@ -50,11 +55,39 @@ final class OsmiUploader: NSObject, ObservableObject {
 
     func start(_ r: Recording) {
         guard !isBusy else { return }
+        guard auth.hasSession else { return needLogin(r) }
         lastRecording = r
         file = r.url
         pending = nil
         phase = .preparing
         Task { await createImport(r) }
+    }
+
+    /// 登入視窗的兩個按鈕（Google／Apple）。登入成功就接著上傳剛剛按下的那個錄音。
+    func signIn(_ provider: OsmiAuth.Provider) {
+        loginError = nil
+        Task {
+            do {
+                try await auth.signIn(provider)
+                showLogin = false
+                if let r = pendingRecording { pendingRecording = nil; start(r) }
+            } catch OsmiAuth.AuthError.cancelled {
+                // 使用者自己關掉登入視窗：什麼都不做
+            } catch {
+                loginError = error.localizedDescription
+            }
+        }
+    }
+
+    func cancelLogin() {
+        showLogin = false; loginError = nil; pendingRecording = nil
+    }
+
+    private func needLogin(_ r: Recording) {
+        pendingRecording = r
+        file = nil; phase = .idle
+        loginError = nil
+        showLogin = true
     }
 
     func retry() {
@@ -86,9 +119,14 @@ final class OsmiUploader: NSObject, ObservableObject {
 
     private func createImport(_ r: Recording) async {
         let base = Self.baseURL
+        guard let token = await auth.accessToken() else {
+            if phase == .preparing { needLogin(r) }             // 登入已過期或取不到：重新登入後再上傳
+            return
+        }
         var req = URLRequest(url: base.appendingPathComponent("imports"))
         req.httpMethod = "POST"
         req.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        req.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         let body: [String: Any] = [
             "filename": r.url.lastPathComponent,
             "size": r.size,
@@ -101,6 +139,10 @@ final class OsmiUploader: NSObject, ObservableObject {
         do {
             let (data, resp) = try await session.data(for: req)
             guard phase == .preparing else { return }             // 中途取消了
+            if (resp as? HTTPURLResponse)?.statusCode == 401 {    // 伺服器不認這個登入：清掉重來
+                auth.signOut()
+                return needLogin(r)
+            }
             guard let http = resp as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
                 return fail(String(format: L("upload.httpError"), (resp as? HTTPURLResponse)?.statusCode ?? 0))
             }

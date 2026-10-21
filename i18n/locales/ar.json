@@ -31,7 +31,7 @@
 "action.save": "حفظ",
 "action.ok": "حسنًا",
 "level.mic": "الميكروفون",
-"level.system": "صوت الـ Mac",
+"level.system": "صوت Mac",
 "level.muted": "مكتوم",
 "action.muteTrack": "كتم هذا المسار",
 "action.unmuteTrack": "إلغاء كتم هذا المسار",
@@ -95,5 +95,15 @@
 "settings.echoOn": "مفعّل دائمًا",
 "settings.echoOff": "متوقف دائمًا",
 "action.transcribe": "تفريغ نصي",
-"transcribe.explain": "تفريغ نصي عبر Osmi"
+"transcribe.explain": "تفريغ نصي عبر Osmi",
+"osmi.login.title": "تسجيل الدخول إلى Osmi",
+"osmi.login.note": "سجّل الدخول مرة واحدة لإرسال هذا التسجيل إلى Osmi. سيتم تذكّر تسجيل دخولك.",
+"osmi.login.google": "تسجيل الدخول بحساب Google",
+"osmi.login.apple": "تسجيل الدخول بحساب Apple",
+"osmi.login.cancel": "إلغاء",
+"osmi.login.cancelled": "أُلغي تسجيل الدخول.",
+"osmi.login.badResponse": "لم يكتمل تسجيل الدخول. حاول مرة أخرى.",
+"settings.osmi": "حساب Osmi",
+"settings.osmiSignOut": "تسجيل الخروج",
+"settings.osmiNotSignedIn": "غير مسجّل الدخول"
 }

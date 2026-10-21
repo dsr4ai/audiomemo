@@ -95,5 +95,15 @@
 "settings.echoOn": "常にオン",
 "settings.echoOff": "常にオフ",
 "action.transcribe": "文字起こし",
-"transcribe.explain": "Osmiで文字起こし"
+"transcribe.explain": "Osmiで文字起こし",
+"osmi.login.title": "Osmiにサインイン",
+"osmi.login.note": "一度サインインすると、この録音をOsmiに送れます。サインイン状態は保存されます。",
+"osmi.login.google": "Googleでサインイン",
+"osmi.login.apple": "Appleでサインイン",
+"osmi.login.cancel": "キャンセル",
+"osmi.login.cancelled": "サインインを取り消しました。",
+"osmi.login.badResponse": "サインインが完了しませんでした。もう一度お試しください。",
+"settings.osmi": "Osmiアカウント",
+"settings.osmiSignOut": "サインアウト",
+"settings.osmiNotSignedIn": "未サインイン"
 }

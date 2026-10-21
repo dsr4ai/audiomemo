@@ -277,6 +277,7 @@ struct SettingsView: View {
     @AppStorage("autoLevel") private var autoLevel = true
     @AppStorage(EchoPolicy.key) private var echoPolicy = EchoPolicy.off.rawValue
     @ObservedObject private var store = AppModel.shared.store
+    @State private var osmiSignedIn = OsmiAuth.load() != nil
 
     var body: some View {
         Form {
@@ -335,6 +336,15 @@ struct SettingsView: View {
                 .font(.system(size: Theme.fsSmall))
                 .foregroundStyle(Theme.ink3)
                 .fixedSize(horizontal: false, vertical: true)
+            LabeledContent(L("settings.osmi")) {
+                if osmiSignedIn {
+                    Button(L("settings.osmiSignOut")) {
+                        AppModel.shared.uploader.auth.signOut(); osmiSignedIn = false
+                    }
+                } else {
+                    Text(L("settings.osmiNotSignedIn")).foregroundStyle(Theme.ink3)
+                }
+            }
         }
         .formStyle(.grouped)
         .frame(minWidth: 460, idealWidth: 540)

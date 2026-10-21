@@ -95,5 +95,15 @@
 "settings.echoOn": "Mindig be",
 "settings.echoOff": "Mindig ki",
 "action.transcribe": "Átírás szöveggé",
-"transcribe.explain": "Átírás Osmival"
+"transcribe.explain": "Átírás Osmival",
+"osmi.login.title": "Bejelentkezés az Osmibe",
+"osmi.login.note": "Egyszeri bejelentkezés után ez a felvétel az Osmihez kerül. A bejelentkezés megmarad.",
+"osmi.login.google": "Bejelentkezés Google-fiókkal",
+"osmi.login.apple": "Bejelentkezés Apple-fiókkal",
+"osmi.login.cancel": "Mégse",
+"osmi.login.cancelled": "A bejelentkezés megszakadt.",
+"osmi.login.badResponse": "A bejelentkezés nem fejeződött be. Próbáld újra.",
+"settings.osmi": "Osmi-fiók",
+"settings.osmiSignOut": "Kijelentkezés",
+"settings.osmiNotSignedIn": "Nincs bejelentkezve"
 }

@@ -42,6 +42,7 @@ enum SnapshotRunner {
         func shoot(_ name: String) async {
             for _ in 0..<30 where !(mainWindow?.isKeyWindow ?? false) { activate(); await sleep(0.1) }
             if !(mainWindow?.isKeyWindow ?? false) { DebugLog.write("snapshot: \(name) window not key") }
+            DebugLog.write("snapshot: \(name) scale=\(mainWindow?.backingScaleFactor ?? 0) screen=\(mainWindow?.screen?.localizedName ?? "-") frame=\(mainWindow?.frame ?? .zero)")
             if (mainWindow?.backingScaleFactor ?? 2) < 2 {
                 // 1x 螢幕：先拍一張完整的（字較糊）＝ <name>__full；再把自己畫的圖層改 2x 重畫拍一張（字銳利，但部分圖片會不見）。
                 // 兩張由 scripts/merge_snapshot_2x.py 合成：字取銳利版、空掉的圖片區塊取完整版。拍完恢復 1x 並切換外觀強制全部重建。

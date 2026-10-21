@@ -95,5 +95,15 @@
 "settings.echoOn": "Immer ein",
 "settings.echoOff": "Immer aus",
 "action.transcribe": "Transkribieren",
-"transcribe.explain": "Mit Osmi transkribieren"
+"transcribe.explain": "Mit Osmi transkribieren",
+"osmi.login.title": "Bei Osmi anmelden",
+"osmi.login.note": "Einmal anmelden, dann wird diese Aufnahme an Osmi gesendet. Die Anmeldung wird gemerkt.",
+"osmi.login.google": "Mit Google anmelden",
+"osmi.login.apple": "Mit Apple anmelden",
+"osmi.login.cancel": "Abbrechen",
+"osmi.login.cancelled": "Anmeldung abgebrochen.",
+"osmi.login.badResponse": "Die Anmeldung wurde nicht abgeschlossen. Bitte erneut versuchen.",
+"settings.osmi": "Osmi-Konto",
+"settings.osmiSignOut": "Abmelden",
+"settings.osmiNotSignedIn": "Nicht angemeldet"
 }

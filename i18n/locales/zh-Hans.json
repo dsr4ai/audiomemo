@@ -95,5 +95,15 @@
 "settings.echoOn": "始终打开",
 "settings.echoOff": "始终关闭",
 "action.transcribe": "转成文字稿",
-"transcribe.explain": "让Osmi听写逐字稿"
+"transcribe.explain": "让 Osmi 转成文字稿",
+"osmi.login.title": "登录 Osmi",
+"osmi.login.note": "登录一次即可把这段录音发送给 Osmi，之后会记住登录状态。",
+"osmi.login.google": "使用 Google 登录",
+"osmi.login.apple": "使用 Apple 登录",
+"osmi.login.cancel": "取消",
+"osmi.login.cancelled": "已取消登录。",
+"osmi.login.badResponse": "登录没有完成，请再试一次。",
+"settings.osmi": "Osmi 账号",
+"settings.osmiSignOut": "退出登录",
+"settings.osmiNotSignedIn": "未登录"
 }

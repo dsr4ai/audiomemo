@@ -110,6 +110,13 @@ enum UploadSelfTest {
         let size = (try? FileManager.default.attributesOfItem(atPath: url.path)[.size] as? Int64) ?? 0
         let rec = Recording(url: url, created: Date(), size: size, duration: 12.3)
         let up = AppModel.shared.uploader
+        #if DEBUG
+        switch UserDefaults.standard.string(forKey: "uploadTestSession") {
+        case "fake": OsmiAuth.debugStoreFakeSession()
+        case "none": up.auth.signOut()
+        default: break
+        }
+        #endif
         up.start(rec)
         Task {
             var last = ""
@@ -120,6 +127,7 @@ enum UploadSelfTest {
                 if case .failed = up.phase { break }
                 if up.phase == .idle { break }
             }
+            DebugLog.write("uploadTest end: showLogin=\(up.showLogin) hasSession=\(up.auth.hasSession)")
             NSApp.terminate(nil)
         }
     }

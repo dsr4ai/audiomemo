@@ -5,6 +5,7 @@ struct MainView: View {
     @EnvironmentObject var recorder: RecordingController
     @EnvironmentObject var store: FileStore
     @EnvironmentObject var player: PlaybackController
+    @EnvironmentObject var uploader: OsmiUploader
 
     var body: some View {
         VStack(spacing: 16) {
@@ -18,6 +19,46 @@ struct MainView: View {
         .onChange(of: recorder.finishedCount) { _, _ in store.refresh() }
         .onChange(of: recorder.currentURL) { _, url in store.refresh(excluding: url) }
         .onChange(of: recorder.phase) { _, ph in if ph != .idle { player.stop() } }   // 開始錄音就停掉播放
+        .sheet(isPresented: $uploader.showLogin) { OsmiLoginSheet() }
+    }
+}
+
+/// 第一次按「讓Osmi聽寫逐字稿」（或登入過期）時出現：用 Google 或 Apple 登入，登入後自動上傳剛才那個錄音。
+struct OsmiLoginSheet: View {
+    @EnvironmentObject var uploader: OsmiUploader
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            Text(L("osmi.login.title"))
+                .font(.system(size: 15, weight: .semibold))
+            Text(L("osmi.login.note"))
+                .font(.system(size: Theme.fsSmall))
+                .foregroundStyle(Theme.ink3)
+                .fixedSize(horizontal: false, vertical: true)
+            Button { uploader.signIn(.google) } label: {
+                Label(L("osmi.login.google"), systemImage: "g.circle")
+                    .frame(maxWidth: .infinity)
+            }
+            .controlSize(.large)
+            Button { uploader.signIn(.apple) } label: {
+                Label(L("osmi.login.apple"), systemImage: "apple.logo")
+                    .frame(maxWidth: .infinity)
+            }
+            .controlSize(.large)
+            if let e = uploader.loginError {
+                Text(e)
+                    .font(.system(size: Theme.fsSmall))
+                    .foregroundStyle(Theme.warn)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            HStack {
+                Spacer()
+                Button(L("osmi.login.cancel")) { uploader.cancelLogin() }
+                    .keyboardShortcut(.cancelAction)
+            }
+        }
+        .padding(22)
+        .frame(width: 360)
     }
 }
 

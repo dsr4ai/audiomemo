@@ -2,6 +2,7 @@
 """Local stand-in for the Osmi import API, for testing "Transcribe with Osmi" without the real backend.
   POST /imports           -> {import_id, secret, upload_url, claim_url, expires_at}
   PUT  /upload/<id>       -> stores the body in <out-dir>/<id>.<ext>, 200
+  POST /imports requires "Authorization: Bearer <token>" (the real API no longer accepts anonymous imports); 401 without it.
 Usage: python3 scripts/fake_osmi_server.py [port=18080] [out-dir=./fake-osmi-uploads] [bytes-per-second (throttle, 0 = off)]
 Then:  open -n AudioMemo.app --args -osmiBaseURL http://127.0.0.1:18080 -osmiNoOpen YES ..."""
 import json, os, secrets, sys, time
@@ -21,6 +22,10 @@ class H(BaseHTTPRequestHandler):
 
     def do_POST(self):
         if self.path != "/imports": return self._json(404, {"error": "not found"})
+        auth = self.headers.get("Authorization", "")
+        print("auth", "Bearer ***" if auth.startswith("Bearer ") and len(auth) > 7 else "none", flush=True)
+        if not auth.startswith("Bearer ") or len(auth) <= 7:
+            return self._json(401, {"code": 401, "msg": "Missing authorization header"})
         body = json.loads(self.rfile.read(int(self.headers.get("Content-Length", 0))) or b"{}")
         for k in ("filename", "size", "content_type", "duration_s", "source", "app_version"):
             if k not in body: return self._json(400, {"error": f"missing {k}"})
